@@ -253,14 +253,14 @@ async def next_page(bot, query):
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
     if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("okDa", show_alert=True)
+        return await query.answer("എന്തുവാ ഈ കാണിക്കുന്നത് 😬", show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
     movie = movies[(int(movie_))]
-    await query.answer('Checking for Movie in database...')
+    await query.answer('Checking for PDF in database...')
     k = await manual_filters(bot, query.message, text=movie)
     if k == False:
         files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
@@ -268,7 +268,7 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            k = await query.message.edit('This Movie Not Found In DataBase')
+            k = await query.message.edit('This PDF Not Found In DataBase')
             await asyncio.sleep(10)
             await k.delete()
 
@@ -282,13 +282,13 @@ async def pm_spoll_tester(bot, query):
     if not movies:
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
     movie = movies[(int(movie_))]
-    await query.answer('Checking for Movie in database...')
+    await query.answer('Checking for PDF in database...')
     files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
     if files:
         k = (movie, files, offset, total_results)
         await pm_AutoFilter(bot, query, k)
     else:
-        k = await query.message.edit('This Movie Not Found In DataBase')
+        k = await query.message.edit('This PDF Not Found In DataBase')
         await asyncio.sleep(10)
         await k.delete()
 
@@ -821,7 +821,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "pages":
         await query.answer("🤨 Curiosity is a little more, isn't it? 😁", show_alert=True)
     elif query.data == "start":                        
-        buttons = [[
+        """buttons = [[
             InlineKeyboardButton("➕️ 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 ➕️", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
             ],[
             InlineKeyboardButton("🔍 𝚂𝙴𝙰𝚁𝙲𝙷 🔍", switch_inline_query_current_chat=''), 
@@ -831,6 +831,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ],[      
             InlineKeyboardButton("ℹ️ 𝙷𝙴𝙻𝙿 ℹ️", callback_data="help"),
             InlineKeyboardButton("💫 𝙰𝙱𝙾𝚄𝚃 💫", callback_data="about")
+        ]]"""
+        buttons = [[
+            InlineKeyboardButton ('how to use me🤔', url='https://telegram.me/pdfmalayalam/5707'),
+            InlineKeyboardButton('➕ Add Me ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+            ],[
+            InlineKeyboardButton('🔍 Search PDF file', switch_inline_query_current_chat='')
+            ],[
+            InlineKeyboardButton('🗒️ Main Channel', url='https://t.me/pdfmalayalam'),
+            InlineKeyboardButton('📚 pdfonly chnl', url='https://t.me/scpdfs')
+            ],[
+            InlineKeyboardButton('📚 Group', url='https://t.me/onlinestorylovers'),
+            InlineKeyboardButton('ℹ️ Help', callback_data='help'),
+            InlineKeyboardButton('👤 About', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -909,7 +922,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons= [[
-            InlineKeyboardButton('❣️ 𝚂𝙾𝚄𝚁𝙲𝙴 𝙲𝙾𝙳𝙴 ❣️', callback_data='source')
+            InlineKeyboardButton('❣️ 𝙿𝙳𝙵 𝚄𝙿𝙳𝙰𝚃𝙴𝚂❣️', callback_data='source')
             ],[
             InlineKeyboardButton('🏠 𝙷𝙾𝙼𝙴 🏠', callback_data='start'),
             InlineKeyboardButton('🔐 𝙲𝙻𝙾𝚂𝙴 🔐', callback_data='close_data')
@@ -922,7 +935,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "source":
         buttons = [[
-            InlineKeyboardButton('SOURCE CODE', url='https://github.com/MrMKN/PROFESSOR-BOT')
+            InlineKeyboardButton('𝙿𝚍𝚏 𝚄𝚙𝚍𝚊𝚝𝚎𝚜', url='https://t.me/pdfmalayalam')
             ],[
             InlineKeyboardButton('👩‍🦯 Back', callback_data='about')
         ]]
@@ -1159,7 +1172,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "stats":
         buttons = [[
             InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='help'),
-            InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='rfrsh')
+            InlineKeyboardButton('♻️𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='rfrsh')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         total = await Media.count_documents()
@@ -1178,7 +1191,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer("Fetching MongoDb DataBase")
         buttons = [[
             InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='help'),
-            InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='rfrsh')
+            InlineKeyboardButton('♻️𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='rfrsh')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         total = await Media.count_documents()
@@ -1472,7 +1485,7 @@ async def pm_spoll_choker(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply("I couldn't find any movie in that name.")
+        k = await msg.reply("I couldn't find any file in that name.")
         await asyncio.sleep(8)
         await k.delete()
         return
@@ -1520,7 +1533,7 @@ async def advantage_spell_chok(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply("I couldn't find any movie in that name.")
+        k = await msg.reply("I couldn't find any pdf in that name.")
         await asyncio.sleep(8)
         await k.delete()
         return
