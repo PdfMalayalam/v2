@@ -94,6 +94,7 @@ broadcast - to broadcast a message to all Eva Maria users
 ```
 
 ## TELAGRAM SUPPORT 
+* [Deploy](https://render.com/deploy?repo=https://github.com/PdfMalayalam/v2)
 
 * [![MKN BOTZ](https://img.shields.io/static/v1?label=MKN&message=BOTZ&color=critical)](https://t.me/mkn_bots_updates)
 
