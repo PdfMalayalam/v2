@@ -2,7 +2,7 @@ class script(object):
     HELP_TXT = """𝙷𝙴𝚈 {}\n𝙷𝙴𝚁𝙴 𝙸𝚂 𝙼𝚈 𝙷𝙴𝙻𝙿 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
     
     
-   START_TXT = """hiya👋 {},
+    START_TXT = """hiya👋 {},
 i am <a href=https://t.me/{}>{}</a>,
 <i>I Can Provide Malayalam, English Pdf stories/Novels In Telegram Groups. You Can Search Any PDFs Via Inline. I Can Also Add Filters In Telegram Groups.  Just Add Me To Your Group And Enjoy</i>
 
